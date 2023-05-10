@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{ title }}</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
+  <script type="text/javascript">
+    function editValue(evt) {
+      let newValue = prompt("Please enter new value");
+
+      if (newValue != null) {
+        document.getElementById("newValue").value = newValue;
+        return true;
+      } 
+      
+      evt.preventDefault();
+
+      return false;
+    }
+  </script>
+</head>
+
+<body>
+  <h1>{{title}}</h1>
+  <p>Welcome to {{title}}</p>
+
+  <form method="post" id="mainForm">
+    <input type="hidden" id="newValue" name="newValue" value="">
+    <table border="1">
+      <th>Id</th>
+      <th>Date / Time</th>
+      <th>Value</th>
+      <th colspan=2>Actions</th>
+      {% for item in items %}
+      <tr>
+        <td>{{ item.Id }}</td>
+        <td>{{ item.EventDate | date("Y-m-d H:i:s") }}</td>
+        <td>{{ item.Value }}</td>
+        <td><button name="id" value="{{ item.Id }}" formaction="edit" onclick="return editValue(event);">Edit</button></td>
+        <td><button name="id" value="{{ item.Id }}" formaction="delete">Delete</button>
+          
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </form>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "measurements",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon -e \"js twig\" ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^16.0.3",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "msnodesqlv8": "^3.0.1",
+    "mssql": "^9.0.1",
+    "nodemon": "^2.0.22",
+    "serialport": "^10.5.0",
+    "twig": "^0.10.3"
+  }
+}
