@@ -1,0 +1,61 @@
+1. Първа заявка
+
+SELECT FirstName
+FROM Employees
+ORDER BY FirstName ASC
+
+/////////////////////////////
+
+2. Втора заявка
+
+SELECT TOP 5
+e.FirstName,
+e.HireDate
+FROM Employees AS e
+WHERE HireDate > '06-02-2000'
+ORDER BY FirstDate ASC
+
+/////////////////////////////
+
+3. Трета заявка
+
+SELECT e.FirstName,
+e.MiddleName,
+e.LastName
+FROM Employees AS e
+WHERE e.FirstName LIKE 'a%'
+
+UNION
+
+(
+SELECT em.FirstName,
+em.MiddleName,
+em.LastName
+FROM Employees AS em
+WHERE em.MiddleName LIKE 'F'
+)
+
+ORDER BY e.MiddleName ASC
+
+/////////////////////////////
+
+4. Четвърта заявка
+
+SELECT CONCAT(FirstName,LastName,'@bulgaria.bg') AS Emails
+FROM Employees
+
+/////////////////////////////
+
+5. Пета заявка 
+
+SELECT TOP 10 
+e.[FirstName], 
+e.[LastName].
+t.[Name] AS [Town], 
+a.[AddressText] AS [Address] 
+FROM Employees AS e
+INNER JOIN Addresses AS a 
+ON e.AddressID = a.AddressID 
+INNER JOIN Towns AS t 
+ON a.TownID = t.TownID 
+ORDER BY e.FirstName ASC
