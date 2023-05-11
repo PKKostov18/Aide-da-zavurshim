@@ -12,6 +12,7 @@ var process = require('process');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var pageRouter = require('./routes/page');
+var informationRouter = require('./routes/information');
 
 const sql = require('mssql/msnodesqlv8')
 require('dotenv').config()
@@ -30,7 +31,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/page', pageRouter);
+app.use('/page',pageRouter);
+app.use('/information',informationRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -74,7 +77,7 @@ function initSerialPort(onSerialData) {
 
 const sqlConfig = {
   database: 'example',
-  server: 'SL179\\SQLEXPRESS',
+  server: 'SL046\\SQLEXPRESS',
   pool: {
     max: 10,
     min: 0,

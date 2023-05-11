@@ -12,12 +12,6 @@ class MeasurementsRepository {
         
         return results.recordset;
     }
-    async getAllFromToday() {
-        let results = await this._sql
-            .query`SELECT Id, EventDate, Value FROM Events WHERE Value >= 1000 ORDER BY Id `;
-        
-        return results.recordset;
-    }
 
     async getById(id) {
         let results = await this._sql
