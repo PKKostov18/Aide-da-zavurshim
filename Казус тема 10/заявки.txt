@@ -1,0 +1,87 @@
+1. Напишете заявка, която показва най-ниската заплата за всеки отдел(department).
+Списъкът да е подреден по заплата в низходящ ред и по длъжност в азбучен ред
+
+SELECT
+e.JobTitle, e.Salary
+FROM Employees AS e
+JOIN Departments AS d
+ON e.DepartmentID = d.DepartmentID
+WHERE e.Salary =
+(
+SELECT MIN(emp.Salary)
+FROM Empoyees AS emp
+WHERE e.DepartmentID = emp.DepartmentID
+)
+ORDER BY e.Salary DESC, e.JobTitle ASC
+
+2. Напишете заявка, която извецда името, фамилията и заплатата на всички служители получаващи 
+най-високата заплата в своя отдел. Резултатът да е сортиран по първо име в азбучен ред 
+
+
+SELECT
+
+e.JobTitle, e.LastName, e.Salary
+FROM Employees AS e
+WHERE e.Salary =
+(
+SELECT MAX(emp.Salary)
+FROM Empoyees AS emp
+WHERE e.DepartmentID = emp.DepartmentID
+)
+ORDER BY e.FirstName DESC
+
+3. Напишете заявка, която намира града на всички служители(FirstName, LastName), които нямат мениджър. Подредете ги по
+първо име и фамилия в азбучен ред 
+
+SELECT
+e.FirstName,
+e.LastName,
+t.[TownName] AS [Towns]
+FROM Employees e
+INNER JOIN Addresses a
+ON e.AddressID = a.AddressID
+INNER JOIN Towns t
+ON a.TownID = t.TownID
+WHERE e.EmployeeID IN
+(
+SELECT EmpoyeeID
+FROM Empoyees
+WHERE ManagerID IS NULL
+)
+ORDER BY e.FirstName ASC, e.LastName ASC
+
+4. Няма условие написано
+
+SELECT
+d.[Name]
+FROM Empoyees AS e
+JOIN Departments AS d
+ON e.DepartmentID = d.DepartmentID
+GROUP BY d.[Name]
+HAVING COUNT(*) > 10
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
